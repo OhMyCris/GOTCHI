@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gotchi</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">  
+    <link rel="stylesheet" href="../css/main.css" id="dynamic-styles">
+    
+</head>
+<body>
+    <main>
+        <div id="icon-container">
+            <div class="buttons">
+                <span class="icon" id="icon1"><i class="fa-solid fa-house"></i></span>
+                <span class="icon" id="icon2"><i class="fa-solid fa-utensils"></i></span>
+                <span class="icon" id="icon3"><i class="fa-solid fa-toilet"></i></span>
+                <span class="icon" id="icon4"><i class="fa-solid fa-baseball"></i></span>
+            </div>
+            <div class="mascot">
+                <span id="health-icon"><img src="../img/Mari1-idle.png" alt=""></span>
+                <div class="poop" id="poop-container"></div>
+            </div>
+            <div class="buttons"> 
+                <span class="icon" id="icon5"><i class="fa-solid fa-face-angry"></i></span>
+                <span class="icon" id="icon6"><i class="fa-solid fa-syringe"></i></span>
+                <span class="icon" id="icon7"><i class="fa-solid fa-lightbulb"></i></span>
+                <span class="icon" id="icon8"><i class="fa-solid fa-comments"></i></span>
+            </div>
+            
+        </div>
+        <div>
+            <button id="prev-button">Previous</button>
+            <button id="next-button">Next</button>
+            <button id="cancel-button">Cancel</button>
+        </div>
+        <span id="current-index">currentIndex = 0</span>
+        <span id="current-icon-index">iconIndex = 0</span>
+        <div id="output"> Health: 100 hunger: 100 Happiness:100 Discipline:50</div>
+        <p>Tiempo restante: <span id="tiempo-restante"></span> segundos</p>
+    </main>
+
+    <script src="../js/contadores.js"></script>
+    <script src="../js/poop-container.js"></script>
+    <script src="../js/health.js"></script>
+    <script src="../js/daynight.js"></script>
+    <script src="../js/cuenta-atras.js"></script>
+
+    <script>
+        const icons = document.querySelectorAll('.icon');
+        let currentIndex = -1;
+
+        function updateSelection() {
+            icons.forEach((icon, index) => {
+                if (index === currentIndex) {
+                icon.classList.add('selected');
+                icon.classList.remove('icon');
+            } else {
+                icon.classList.remove('selected');
+                icon.classList.add('icon');
+            }
+                document.getElementById('current-icon-index').textContent = `iconIndex = ${index}`;
+            });
+            document.getElementById('current-index').textContent = `currentIndex = ${currentIndex}`;
+        }
+
+        document.getElementById('prev-button').addEventListener('click', () => {
+            currentIndex = (currentIndex + 1 + icons.length) % icons.length;
+            updateSelection();
+        });
+
+        document.getElementById('next-button').addEventListener('click', () => {
+            const selectedIcon = icons[currentIndex].id;
+            let targetUrl = '';
+            let randomNum = Math.random() > 0.3;
+            switch (selectedIcon) {
+                case 'icon1':
+                    targetUrl = 'info.html';
+                    break;
+                case 'icon2':
+                    if(randomNum){
+                        targetUrl = 'feed.html';
+                    } else{
+                        targetUrl = 'refuse.html';
+                    }
+                    break;
+                case 'icon3':
+                    stopSpawningIcons();
+                    startSpawningIcons();
+                    break;
+                case 'icon4':
+                    if(randomNum){
+                        targetUrl = 'play.html';
+                    } else{
+                        targetUrl = 'refuse.html';
+                    }
+                    break;
+                case 'icon5':
+                    targetUrl = 'discipline.html';
+                    break;
+                case 'icon6':
+                    restoreHealth();
+                    break;
+                case 'icon7':
+                    dayNight();
+                    break;
+                case 'icon8':
+                    targetUrl = 'attention.html';
+                    break;
+            }
+            if (targetUrl){
+                window.location.href = targetUrl;
+            }
+            
+        });
+
+        document.getElementById('cancel-button').addEventListener('click', () => {
+            currentIndex = -1;
+            updateSelection();
+        });
+
+        updateSelection();
+
+        
+    </script>
+    
+</body>
+</html>

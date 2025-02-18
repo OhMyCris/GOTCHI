@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">  
+    <title>Info</title>
+    <link rel="stylesheet" href="../css/info.css">
+</head>
+<body>
+    <main>
+        <div id="icon-container">
+            <div class="buttons">
+                <span class="selected" id="icon1"><i class="fa-solid fa-house"></i></span>
+                <span class="icon" id="icon2"><i class="fa-solid fa-utensils"></i></span>
+                <span class="icon" id="icon3"><i class="fa-solid fa-toilet"></i></span>
+                <span class="icon" id="icon4"><i class="fa-solid fa-baseball"></i></span>
+            </div>
+            <div class="mascot">
+                <span>weight: 2kg</span>
+                <span id="age">age: 0 yrs</span>
+            </div>
+            <div class="buttons">
+                <span class="icon" id="icon5"><i class="fa-solid fa-face-angry"></i></span>
+                <span class="icon" id="icon6"><i class="fa-solid fa-syringe"></i></span>
+                <span class="icon" id="icon7"><i class="fa-solid fa-lightbulb"></i></span>
+                <span class="icon" id="icon8"><i class="fa-solid fa-comments"></i></span>
+            </div>
+            
+        </div>
+        <div>
+            <button id="prev-button">Previous</button>
+            <button id="next-button">Next</button>
+            <button id="cancel-button">Cancel</button>
+        </div>
+        <span id="current-index">currentIndex = 0</span>
+        <span id="current-icon-index">iconIndex = 0</span>
+        <div id="output"> Health: 100 hunger: 100</div>
+    </main>
+
+    <script src="../js/contadores.js"></script>
+    <script>
+        const icons = document.querySelectorAll('.icon');
+        let currentIndex = -1;
+
+        function updateSelection() {
+            icons.forEach((icon, index) => {
+                
+                document.getElementById('current-icon-index').textContent = `iconIndex = ${index}`;
+            });
+            document.getElementById('current-index').textContent = `currentIndex = ${currentIndex}`;
+        }
+
+        document.getElementById('prev-button').addEventListener('click', () => {
+            currentIndex = (currentIndex + 1 + icons.length) % icons.length;
+            updateSelection();
+        });
+
+        document.getElementById('next-button').addEventListener('click', () => {
+            
+        });
+
+        document.getElementById('cancel-button').addEventListener('click', () => {
+            let targetUrl = '';
+            targetUrl = 'main.html';
+            window.location.href = targetUrl;
+            updateSelection();
+        });
+
+        updateSelection();
+    
+    </script>
+</body>
+</html>

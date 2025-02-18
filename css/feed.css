@@ -1,0 +1,42 @@
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    position: relative;
+    z-index: 1;
+}
+
+#icon-container{
+    background-color: blueviolet;
+    opacity: 75%;
+    width: 150px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.buttons{
+    display: flex;
+    justify-content: space-between;
+    padding: 6px;
+}
+
+.icon {
+    opacity: 50%;
+}
+.selected {
+    opacity: 100%;
+}
+
+.mascot {
+    background-color: aquamarine;
+
+    & .selected {
+        &::before {
+            content: '▸ ';
+        }
+    }
+}

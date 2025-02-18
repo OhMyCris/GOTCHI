@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Refuse</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">  
+    <link rel="stylesheet" href="../css/refuse.css" id="dynamic-styles">
+</head>
+<body>
+    <main>
+        <div id="icon-container">
+            <div class="buttons">
+                <span class="icon" id="icon1"><i class="fa-solid fa-house"></i></span>
+                <span class="icon" id="icon2"><i class="fa-solid fa-utensils"></i></span>
+                <span class="icon" id="icon3"><i class="fa-solid fa-toilet"></i></span>
+                <span class="icon" id="icon4"><i class="fa-solid fa-baseball"></i></span>
+            </div>
+            <div class="mascot" id="image-container-2">
+                <span id="health-icon"><img src="../img/Mari1-left.png" alt=""></span>
+                <div class="poop" id="poop-container"></div>
+            </div>
+            <div class="buttons"> 
+                <span class="icon" id="icon5"><i class="fa-solid fa-face-angry"></i></span>
+                <span class="icon" id="icon6"><i class="fa-solid fa-kit-medical"></i></span>
+                <span class="icon" id="icon7"><i class="fa-solid fa-lightbulb"></i></span>
+                <span class="icon" id="icon8"><i class="fa-solid fa-comments"></i></span>
+            </div>
+            
+        </div>
+        <div>
+            <button id="prev-button">Previous</button>
+            <button id="next-button">Next</button>
+            <button id="cancel-button">Cancel</button>
+        </div>
+        <span id="current-index">currentIndex = 0</span>
+        <span id="current-icon-index">iconIndex = 0</span>
+        <div id="output"> Health: 100 hunger: 100 Happiness:100</div>
+        <p>Tiempo restante: <span id="tiempo-restante"></span> segundos</p>
+    </main>
+
+    <script src="../js/contadores.js"></script>
+    <script src="../js/refuse.js"></script>
+    <script src="../js/cuenta-atras.js"></script>
+    
+</body>
+</html>

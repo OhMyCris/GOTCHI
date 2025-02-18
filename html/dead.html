@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dead</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">  
+    <link rel="stylesheet" href="../css/dead.css" id="dynamic-styles">
+</head>
+<body>
+    <main>
+        <div id="icon-container">
+            <div class="buttons">
+                <span class="icon" id="icon1"><i class="fa-solid fa-house"></i></span>
+                <span class="icon" id="icon2"><i class="fa-solid fa-utensils"></i></span>
+                <span class="icon" id="icon3"><i class="fa-solid fa-toilet"></i></span>
+                <span class="icon" id="icon4"><i class="fa-solid fa-baseball"></i></span>
+            </div>
+            <div class="mascot">
+                <span id="health-icon">x-x</span>
+                <div class="poop" id="poop-container"></div>
+            </div>
+            <div class="buttons"> 
+                <span class="icon" id="icon5"><i class="fa-solid fa-face-angry"></i></span>
+                <span class="icon" id="icon6"><i class="fa-solid fa-kit-medical"></i></span>
+                <span class="icon" id="icon7"><i class="fa-solid fa-lightbulb"></i></span>
+                <span class="icon" id="icon8"><i class="fa-solid fa-comments"></i></span>
+            </div>
+            
+        </div>
+        <div>
+            <button id="prev-button">Previous</button>
+            <button id="next-button">Next</button>
+            <button id="cancel-button">Cancel</button>
+        </div>
+        <span id="current-index">currentIndex = 0</span>
+        <span id="current-icon-index">iconIndex = 0</span>
+        <div id="output"> Health: 100 hunger: 100 Happiness:100</div>
+    </main>
+
+    <script src="../js/contadores.js"></script>
+    <script>
+        const icons = document.querySelectorAll('.icon');
+        let currentIndex = -1;
+
+        window.gotchi.looks.splice(0, 2, '../img/Mari1-dead.png', '../img/Mari2-dead.png');
+
+        animation();
+        function updateSelection() {
+            icons.forEach((icon, index) => {
+                if (index === currentIndex) {
+                icon.classList.add('selected');
+                icon.classList.remove('icon');
+            } else {
+                icon.classList.remove('selected');
+                icon.classList.add('icon');
+            }
+                document.getElementById('current-icon-index').textContent = `iconIndex = ${index}`;
+            });
+            document.getElementById('current-index').textContent = `currentIndex = ${currentIndex}`;
+        }
+
+        document.getElementById('prev-button').addEventListener('click', () => {
+            
+        });
+
+        document.getElementById('next-button').addEventListener('click', () => {
+            
+        });
+
+        document.getElementById('cancel-button').addEventListener('click', () => {
+            
+        });
+
+        updateSelection();
+
+        
+    </script>
+    
+</body>
+</html>

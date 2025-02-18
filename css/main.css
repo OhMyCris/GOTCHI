@@ -1,0 +1,97 @@
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    position: relative;
+    z-index: 1;
+}
+#icon-container{
+    background-color: blueviolet;
+    opacity: 75%;
+    width: 150px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.buttons{
+    display: flex;
+    justify-content: space-between;
+    padding: 6px;
+}
+
+.icon {
+    opacity: 50%;
+}
+.selected {
+    opacity: 100%;
+}
+
+.mascot {
+    position: relative;
+    text-align: center;
+    padding: 10px 0;
+    background-color: aquamarine;
+    height: 70px;
+    width: 100%;
+    opacity: 75%;
+    
+
+    & #health-icon{
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        animation: spritesMoviendose 1s infinite;
+    }
+}
+
+/*@keyframes spritesMoviendose {
+    0% {
+        transform: translate(0, 0);
+    }
+    39% {
+        transform: translate(0, 0);
+    }
+    40% {
+        transform: translate(0, 20px);
+    }
+    80% {
+        transform: translate(0, 20px);
+    }
+    81% {
+        transform: translate(0, 0);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}*/
+
+.poop {
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    opacity: 100;
+    display: flex;
+    flex-direction: column-reverse;
+    flex-wrap: wrap-reverse;
+    align-content: flex-start;
+    justify-content: flex-start;
+
+    & .icon {
+        position: relative;
+        padding: 0px;
+        margin: 0px;
+        height: auto;
+        width: auto;
+        font-size: 0.96rem;
+        opacity: 100;
+    }
+}
