@@ -6,7 +6,7 @@ async function returnPrev(){
         //Vuelve al html anterior del que se vino
         targetUrl = document.referrer;
         if (!targetUrl) {
-            targetUrl = 'index.html';
+            targetUrl = '../index.html';
         }
         window.location.href = targetUrl;
         

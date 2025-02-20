@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gotchi</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">  
-    <link rel="stylesheet" href="../css/main.css" id="dynamic-styles">
+    <link rel="stylesheet" href="css/main.css" id="dynamic-styles">
     
 </head>
 <body>
@@ -40,11 +40,11 @@
         <p>Tiempo restante: <span id="tiempo-restante"></span> segundos</p>
     </main>
 
-    <script src="../js/contadores.js"></script>
-    <script src="../js/poop-container.js"></script>
-    <script src="../js/health.js"></script>
-    <script src="../js/daynight.js"></script>
-    <script src="../js/cuenta-atras.js"></script>
+    <script src="js/contadores.js"></script>
+    <script src="js/poop-container.js"></script>
+    <script src="js/health.js"></script>
+    <script src="js/daynight.js"></script>
+    <script src="js/cuenta-atras.js"></script>
 
     <script>
         const icons = document.querySelectorAll('.icon');
@@ -75,13 +75,13 @@
             let randomNum = Math.random() > 0.3;
             switch (selectedIcon) {
                 case 'icon1':
-                    targetUrl = 'info.html';
+                    targetUrl = 'html/info.html';
                     break;
                 case 'icon2':
                     if(randomNum){
-                        targetUrl = 'feed.html';
+                        targetUrl = 'html/feed.html';
                     } else{
-                        targetUrl = 'refuse.html';
+                        targetUrl = 'html/refuse.html';
                     }
                     break;
                 case 'icon3':
@@ -90,13 +90,13 @@
                     break;
                 case 'icon4':
                     if(randomNum){
-                        targetUrl = 'play.html';
+                        targetUrl = 'html/play.html';
                     } else{
-                        targetUrl = 'refuse.html';
+                        targetUrl = 'html/refuse.html';
                     }
                     break;
                 case 'icon5':
-                    targetUrl = 'discipline.html';
+                    targetUrl = 'html/discipline.html';
                     break;
                 case 'icon6':
                     restoreHealth();
@@ -105,7 +105,7 @@
                     dayNight();
                     break;
                 case 'icon8':
-                    targetUrl = 'attention.html';
+                    targetUrl = 'html/attention.html';
                     break;
             }
             if (targetUrl){
