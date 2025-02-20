@@ -42,7 +42,7 @@ function danceGame(){
         window.gotchi.happiness -= 5;
         score = 0;
         miss = 0;
-        targetUrl = 'main.html';
+        targetUrl = 'index.html';
         window.location.href = targetUrl;
     }
 
@@ -64,7 +64,7 @@ function danceGame(){
                 intervalTime = 4000;
                 updateInterval();
                 scoreUpdated = true;
-                targetUrl = 'main.html';
+                targetUrl = 'index.html';
                 window.location.href = targetUrl;
                 break;
         }

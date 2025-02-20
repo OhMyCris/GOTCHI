@@ -1,12 +1,12 @@
 
 async function returnPrev(){
-    window.gotchi.looks.splice(0, 2, '../img/Mari1-left.png', '../img/Mari2-right.png');
+    animation(edadGotchi(), 'refuse');
     setInterval(() => {
         let targetUrl = '';
         //Vuelve al html anterior del que se vino
         targetUrl = document.referrer;
         if (!targetUrl) {
-            targetUrl = 'main.html';
+            targetUrl = 'index.html';
         }
         window.location.href = targetUrl;
         

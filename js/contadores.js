@@ -7,8 +7,31 @@ window.gotchi = /*savedState ? JSON.parse(savedState) : */{
     date: new Date(),
     alive: true,
     discipline: 50,
-    looks: ['../img/Mari1-idle.png', '../img/Mari2-idle.png']
+    looks: [
+        {
+            name: 'baby',
+            idle: ['../img/Cindi1-idle.png', '../img/Cindi2-idle.png'],
+            sick: ['../img/Cindi1-sick.png', '../img/Cindi2-sick.png'],
+            refuse: ['../img/Cindi1-left.png', '../img/Cindi2-right.png'],
+            dead: ['../img/Cindi1-dead.png', '../img/Cindi2-dead.png']
+        },
+        {
+            name: 'stage1-1',
+            idle: ['../img/Mari1-idle.png', '../img/Mari2-idle.png'],
+            sick: ['../img/Mari1-sick.png', '../img/Mari2-sick.png'],
+            refuse: ['../img/Mari1-left.png', '../img/Mari2-right.png'],
+            dead: ['../img/Mari1-dead.png', '../img/Mari2-dead.png']
+        },
+        {
+            name: 'stage2-1',
+            idle: ['../img/Rose1-idle.png', '../img/Rose2-idle.png'],
+            sick: ['../img/Rose1-sick.png', '../img/Rose2-sick.png'],
+            refuse: ['../img/Rose1-left.png', '../img/Rose2-right.png'],
+            dead: ['../img/Rose1-dead.png', '../img/Rose2-dead.png']
+        }
+    ]  
 }
+//Se declara aqui pero la estoy usando tambien en otros js
 let targetUrl = '';
 
 //Para que se incremente cualquier valor sin pasar de 100
@@ -51,7 +74,7 @@ if(diasTranscurridos >= 7){
     gotchi.age += incrementos;
 
     //Evolucion o muerte dependiendo de la edad, me ha sumado un año cuando deberia esperar una semana para ello
-    switch(gotchi.age){
+    /*switch(gotchi.age){
         case 1:
             targetUrl = 'evolution-1.html';
             window.location.href = targetUrl;
@@ -64,7 +87,7 @@ if(diasTranscurridos >= 7){
             targetUrl = 'dead.html';
             window.location.href = targetUrl;
             break;
-    }
+    }*/
 }
 
 console.log(gotchi.age);
@@ -88,20 +111,44 @@ function evolution(img1, img2){
 }
 
 //Para que el gotchi se mueva
-//Se mini para cada 4 intervalos
-function animation(){
+//El stage sirve para buscar el objeto de las imagenes (baby, stage1-1, etc...), y el imgs para ponerle
+//la clave del grupo de imagenes(idle, sick, refuse, etc...)
+let currentInterval;
+function animation(stage, imgs){
     let image = document.getElementById('health-icon');
     let counter = 0;
-    setInterval(() => {
-        image.innerHTML = counter % 2 === 0  ? `<img src="${gotchi.looks[0]}" alt="">` : `<img src="${gotchi.looks[1]}" alt="">`;
+
+    //Para que no se generen intervalos superpuestos
+    if (currentInterval) {
+        clearInterval(currentInterval);
+    }
+
+    let gotchiStage = window.gotchi.looks.find(look => look.name == stage);
+
+    let idleImgs = gotchiStage[imgs];
+
+    currentInterval = setInterval(() => {
+        image.innerHTML = counter % 2 === 0  ? `<img src="${idleImgs[0]}" alt="">` : `<img src="${idleImgs[1]}" alt="">`;
         counter++;
     }, 500);
+}
+
+//Cambia automaticamente el nombre de su fase evolutiva segun la edad que tenga
+function edadGotchi(){
+    if(gotchi.age == 0){
+        return 'baby';
+    } else if (gotchi.age >= 1 && gotchi.age < 3){
+        return 'stage1-1';
+    }
+    else if (gotchi.age >= 3){
+        return 'stage2-1';
+    }
 }
 
 //Para que la animacion se ejecute solo en los que muestren al gotchi
 const healthIcon = document.getElementById('health-icon');
 if(healthIcon){
-    animation();
+    animation(edadGotchi(), 'idle');
 }
 
 

@@ -17,7 +17,7 @@
                 <span class="icon" id="icon4"><i class="fa-solid fa-baseball"></i></span>
             </div>
             <div class="mascot">
-                <span id="health-icon">x-x</span>
+                <span id="health-icon"></span>
                 <div class="poop" id="poop-container"></div>
             </div>
             <div class="buttons"> 
@@ -43,9 +43,7 @@
         const icons = document.querySelectorAll('.icon');
         let currentIndex = -1;
 
-        window.gotchi.looks.splice(0, 2, '../img/Mari1-dead.png', '../img/Mari2-dead.png');
-
-        animation();
+        animation(edadGotchi(), 'dead');
         function updateSelection() {
             icons.forEach((icon, index) => {
                 if (index === currentIndex) {
