@@ -10,24 +10,24 @@ window.gotchi = /*savedState ? JSON.parse(savedState) : */{
     looks: [
         {
             name: 'baby',
-            idle: ['../img/Cindi1-idle.png', '../img/Cindi2-idle.png'],
-            sick: ['../img/Cindi1-sick.png', '../img/Cindi2-sick.png'],
-            refuse: ['../img/Cindi1-left.png', '../img/Cindi2-right.png'],
-            dead: ['../img/Cindi1-dead.png', '../img/Cindi2-dead.png']
+            idle: ['img/Cindi1-idle.png', 'img/Cindi2-idle.png'],
+            sick: ['img/Cindi1-sick.png', 'img/Cindi2-sick.png'],
+            refuse: ['img/Cindi1-left.png', 'img/Cindi2-right.png'],
+            dead: ['img/Cindi1-dead.png', 'img/Cindi2-dead.png']
         },
         {
             name: 'stage1-1',
-            idle: ['../img/Mari1-idle.png', '../img/Mari2-idle.png'],
-            sick: ['../img/Mari1-sick.png', '../img/Mari2-sick.png'],
-            refuse: ['../img/Mari1-left.png', '../img/Mari2-right.png'],
-            dead: ['../img/Mari1-dead.png', '../img/Mari2-dead.png']
+            idle: ['img/Mari1-idle.png', 'img/Mari2-idle.png'],
+            sick: ['img/Mari1-sick.png', 'img/Mari2-sick.png'],
+            refuse: ['img/Mari1-left.png', 'img/Mari2-right.png'],
+            dead: ['img/Mari1-dead.png', 'img/Mari2-dead.png']
         },
         {
             name: 'stage2-1',
-            idle: ['../img/Rose1-idle.png', '../img/Rose2-idle.png'],
-            sick: ['../img/Rose1-sick.png', '../img/Rose2-sick.png'],
-            refuse: ['../img/Rose1-left.png', '../img/Rose2-right.png'],
-            dead: ['../img/Rose1-dead.png', '../img/Rose2-dead.png']
+            idle: ['img/Rose1-idle.png', 'img/Rose2-idle.png'],
+            sick: ['img/Rose1-sick.png', 'img/Rose2-sick.png'],
+            refuse: ['img/Rose1-left.png', 'img/Rose2-right.png'],
+            dead: ['img/Rose1-dead.png', 'img/Rose2-dead.png']
         }
     ]  
 }
@@ -50,12 +50,17 @@ function clock(){
 setInterval(clock, 1000);
 
 //Cuando se abre el tamagotchi por primera vez, se guarda la fecha actual en el localStorage
-let fechaAlmacenada = new Date(localStorage.getItem('fechaAlmacenada'));
-console.log(fechaAlmacenada);
+let fechaAlmacenada = localStorage.getItem('fechaAlmacenada');
 
-if (!fechaAlmacenada) {
+if (fechaAlmacenada) {
+    // Si la fecha está en localStorage y es una fecha válida
+    fechaAlmacenada = new Date(fechaAlmacenada);
+    console.log(fechaAlmacenada);
+} else {
+    // Si no hay fecha almacenada, guarda la fecha actual
     fechaAlmacenada = gotchi.date;
     localStorage.setItem('fechaAlmacenada', fechaAlmacenada.toISOString());
+    console.log("Fecha almacenada:", fechaAlmacenada);
 }
 
 function calcularDiferenciaDias(fechaAlmacenada, fechaActual) {
@@ -180,7 +185,7 @@ function updateValues(obj, interval){
 
     if(todasEnCero){
         clearInterval(intervalId);
-        targetUrl = 'dead.html';
+        targetUrl = '../html/dead.html';
         window.location.href = targetUrl;
         return;
     }
