@@ -12,22 +12,22 @@ window.gotchi = /*savedState ? JSON.parse(savedState) : */{
             name: 'baby',
             idle: ['img/Cindi1-idle.png', 'img/Cindi2-idle.png'],
             sick: ['img/Cindi1-sick.png', 'img/Cindi2-sick.png'],
-            refuse: ['img/Cindi1-left.png', 'img/Cindi2-right.png'],
-            dead: ['img/Cindi1-dead.png', 'img/Cindi2-dead.png']
+            refuse: ['../img/Cindi1-left.png', '../img/Cindi2-right.png'],
+            dead: ['../img/Cindi1-dead.png', '../img/Cindi2-dead.png']
         },
         {
             name: 'stage1-1',
             idle: ['img/Mari1-idle.png', 'img/Mari2-idle.png'],
             sick: ['img/Mari1-sick.png', 'img/Mari2-sick.png'],
-            refuse: ['img/Mari1-left.png', 'img/Mari2-right.png'],
-            dead: ['img/Mari1-dead.png', 'img/Mari2-dead.png']
+            refuse: ['../img/Mari1-left.png', '../img/Mari2-right.png'],
+            dead: ['../img/Mari1-dead.png', '../img/Mari2-dead.png']
         },
         {
             name: 'stage2-1',
             idle: ['img/Rose1-idle.png', 'img/Rose2-idle.png'],
             sick: ['img/Rose1-sick.png', 'img/Rose2-sick.png'],
-            refuse: ['img/Rose1-left.png', 'img/Rose2-right.png'],
-            dead: ['img/Rose1-dead.png', 'img/Rose2-dead.png']
+            refuse: ['../img/Rose1-left.png', '../img/Rose2-right.png'],
+            dead: ['../img/Rose1-dead.png', '../img/Rose2-dead.png']
         }
     ]  
 }
