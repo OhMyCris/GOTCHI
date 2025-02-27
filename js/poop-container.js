@@ -13,7 +13,7 @@ function spawnIcon() {
 
     if(spanCount >= 10){
         let targetUrl = '';
-        targetUrl = 'dead.html';
+        targetUrl = '../html/dead.html';
         window.location.href = targetUrl;
     }
 }
