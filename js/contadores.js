@@ -133,19 +133,24 @@ function animation(stage, imgs){
     let idleImgs = gotchiStage[imgs];
 
     currentInterval = setInterval(() => {
-        image.innerHTML = counter % 2 === 0  ? `<img src="${idleImgs[0]}" alt="">` : `<img src="${idleImgs[1]}" alt="">`;
+        if(targetUrl.includes('index')){
+            image.innerHTML = counter % 2 === 0  ? `<img src="${idleImgs[0]}" alt="">` : `<img src="${idleImgs[1]}" alt="">`;
+        } else {
+            image.innerHTML = counter % 2 === 0  ? `<img src="../${idleImgs[0]}" alt="">` : `<img src="../${idleImgs[1]}" alt="">`;
+        }
+        
         counter++;
     }, 500);
 }
 
 //Cambia automaticamente el nombre de su fase evolutiva segun la edad que tenga
 function edadGotchi(){
-    if(gotchi.age == 0){
+    if(window.gotchi.age == 0){
         return 'baby';
-    } else if (gotchi.age >= 1 && gotchi.age < 3){
+    } else if (window.gotchi.age >= 1 && window.gotchi.age < 3){
         return 'stage1-1';
     }
-    else if (gotchi.age >= 3){
+    else if (window.gotchi.age >= 3){
         return 'stage2-1';
     }
 }

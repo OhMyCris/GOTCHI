@@ -60,16 +60,6 @@
             updateSelection();
         });
 
-        //Para que no se pase de la cantidad max de hambre
-        function increaseHunger(amount, param){
-            gotchi[param] += amount;
-            if(gotchi[param] >= 100) {
-                gotchi[param] = 100;
-                alert('Your pet refuses');
-            }
-        }
-
-        
         //Cuando seleccionas una opcion aumenta el parametro hambre
         document.getElementById('next-button').addEventListener('click', () => {
             
@@ -78,9 +68,8 @@
                     window.location.href = targetUrl;
                     updateSelection();
                 } else if (currentIndex === 1) {
-                    increaseHunger(5, 'happiness');
-                    /*targetUrl = 'jump-game.html';
-                    window.location.href = targetUrl;*/
+                    targetUrl = 'jump-game.html';
+                    window.location.href = targetUrl;
                     updateSelection();
                 } 
         });

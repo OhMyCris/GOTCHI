@@ -1,0 +1,76 @@
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    position: relative;
+    z-index: 1;
+}
+#icon-container{
+    background-color: blueviolet;
+    opacity: 75%;
+    width: 150px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.buttons{
+    display: flex;
+    justify-content: space-between;
+    padding: 6px;
+}
+
+.icon {
+    opacity: 50%;
+}
+.selected {
+    opacity: 100%;
+}
+
+.mascot {
+    position: relative;
+    text-align: center;
+    padding: 10px 0;
+    background-color: aquamarine;
+    height: 70px;
+    width: 100%;
+    opacity: 75%;
+}
+
+.mascot #health-icon{
+    position: absolute;
+    top: 60px;
+    left: 15px;
+    width: 25%;
+    height: 100%;
+}
+
+.mascot #barra {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 15px;
+    height: 30px;
+    background-color: blue;
+    animation: moverBarra 3000ms linear infinite;
+    animation-play-state: running;
+}
+
+@keyframes moverBarra {
+    0% {
+        right: 0;
+    }
+    74% {
+        opacity: 100;
+    }
+    75% {
+        opacity: 0;
+    }
+    100% {
+        right: 120%;
+        opacity: 0;
+    }
+}
