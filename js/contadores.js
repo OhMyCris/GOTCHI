@@ -132,8 +132,10 @@ function animation(stage, imgs){
 
     let idleImgs = gotchiStage[imgs];
 
+    let targetPath = window.location.pathname;
+
     currentInterval = setInterval(() => {
-        if(targetUrl.endsWith('/')){
+        if(targetPath === '/' || targetPath === '' || targetPath.includes('index.html')){
             image.innerHTML = counter % 2 === 0  ? `<img src="${idleImgs[0]}" alt="">` : `<img src="${idleImgs[1]}" alt="">`;
         } else {
             image.innerHTML = counter % 2 === 0  ? `<img src="../${idleImgs[0]}" alt="">` : `<img src="../${idleImgs[1]}" alt="">`;
