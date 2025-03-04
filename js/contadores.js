@@ -133,7 +133,11 @@ function animation(stage, imgs){
     let idleImgs = gotchiStage[imgs];
 
     currentInterval = setInterval(() => {
-        image.innerHTML = counter % 2 === 0  ? `<img src="${idleImgs[0]}" alt="">` : `<img src="${idleImgs[1]}" alt="">`;
+        if(targetUrl.endsWith('/')){
+            image.innerHTML = counter % 2 === 0  ? `<img src="${idleImgs[0]}" alt="">` : `<img src="${idleImgs[1]}" alt="">`;
+        } else {
+            image.innerHTML = counter % 2 === 0  ? `<img src="../${idleImgs[0]}" alt="">` : `<img src="../${idleImgs[1]}" alt="">`;
+        }
         
         counter++;
     }, 500);
