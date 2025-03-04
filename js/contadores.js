@@ -193,7 +193,7 @@ function updateValues(obj, interval){
 
     if(todasEnCero){
         clearInterval(intervalId);
-        targetUrl = '../html/dead.html';
+        targetUrl = '/html/dead.html';
         window.location.href = targetUrl;
         return;
     }
