@@ -141,6 +141,7 @@ function animation(stage, imgs){
         
         counter++;
     }, 500);
+
 }
 
 //Cambia automaticamente el nombre de su fase evolutiva segun la edad que tenga

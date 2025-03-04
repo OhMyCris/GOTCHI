@@ -9,6 +9,9 @@ let gotchiBottom = 0;  // Controlar la altura del gotchi
 let salto = false;
 let score = 0;
 let juegoTerminado = false;
+let velBarra = 3000;
+let ms = velBarra + "ms";
+let timeoutTime = 1000;
 
 function moverBarra() {
     const barraRect = barra.getBoundingClientRect();
@@ -27,16 +30,14 @@ function moverBarra() {
 
 // Función para hacer que el monigote salte
 function saltar() {
-    if (juegoTerminado) return; //Para que si se para el juego no haga nada mas
+    if (juegoTerminado || salto) return; //Para que si se para el juego no haga nada mas
     salto = true;
     gotchi.style.transition = "top 0.5s ease";
     gotchi.style.top = '0px';  // El monigote salta hacia arriba
-    let ksnd = 300;
-    let ms = ksnd + "ms";
+    
 
     setTimeout(() => {
         gotchi.style.top = '60px';  // El gotchi vuelve a su posición inicial (top: 60px)
-        salto = false;
         if (!juegoTerminado) {
             const barraRect = barra.getBoundingClientRect();
             const gotchiRect = gotchi.getBoundingClientRect();
@@ -46,14 +47,24 @@ function saltar() {
             } else {
                 // Si no hay colisión, sumamos al puntaje
                 score++;
-                ksnd -=1000;
-                ms = ksnd + "ms";
-                gotchi.style.animation = `moverBarra ${ms} linear infinite`;
-                console.log("Puntaje:", score);
+                velBarra -=100;
+                timeoutTime -= 50;
+                if (velBarra < 100) velBarra = 100;
+                if (timeoutTime < 600) timeoutTime = 600;
+                ms = velBarra + "ms";
+
+                barra.style.right = '0'; // Esto restablece la barra a la esquina derecha
+                barra.style.animation = 'none';
+                setTimeout(() => {
+                    barra.style.animation = `moverBarra ${ms} linear infinite`;  // Reiniciamos la animación con la nueva duración
+                }, 20);
+                console.log("Puntaje:", score, "Velocidad de la barra:", velBarra, "Tiempo de espera:", timeoutTime);
             }
         }
+
+        salto = false;
         
-    }, 1000);
+    }, timeoutTime);
 }
 
 // Se ejecuta cada 100 ms para mover la barra
@@ -65,6 +76,7 @@ setInterval(() => {
 function detenerJuego() {
     juegoTerminado = true;
     barra.style.animationPlayState = 'paused';  // Detener la animación de la barra
+    
 }
 
 document.getElementById('next-button').addEventListener('click', () => {

@@ -62,6 +62,7 @@ main{
 @keyframes moverBarra {
     0% {
         right: 0;
+        opacity: 100;
     }
     74% {
         opacity: 100;
