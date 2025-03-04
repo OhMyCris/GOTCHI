@@ -17,10 +17,25 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
         tiempoElemento.textContent = "0";
         window.gotchi.discipline -=1;
+
+        reiniciarCuentaAtras();
+
         localStorage.removeItem('tiempoRestante'); // Opcional: eliminar el valor de localStorage
         localStorage.setItem('tiempoRestante', 20);
       }
     };
+
+    // Función para reiniciar la cuenta atrás
+    function reiniciarCuentaAtras() {
+      // Detener el timeout previo
+      clearTimeout(window.cuentaAtrasTimeout);
+      
+      // Establecer el tiempo restante a 20 segundos
+      tiempoRestante = 20;
+      tiempoElemento.textContent = tiempoRestante;
+      localStorage.setItem('tiempoRestante', tiempoRestante);
+
+  }
 
     const paginaActual = window.location.pathname.split('/').pop();
     // Inicia la cuenta atrás
