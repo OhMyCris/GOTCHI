@@ -191,9 +191,19 @@ function updateValues(obj, interval){
         }
     }
 
+    const paginaActual = window.location.pathname.split('/').pop();
+
     if(todasEnCero){
         clearInterval(intervalId);
-        targetUrl = 'html/dead.html';
+
+        // Si estás en la raíz o en 'index.html', la URL será directamente /html/dead.html
+        if (paginaActual === 'index.html') {
+            targetUrl = 'html/dead.html';
+        } else {
+            // Si estás en cualquier otro archivo, ajusta la ruta relativa
+            targetUrl = '../html/dead.html';  // Esto sube un nivel
+        }
+
         window.location.href = targetUrl;
         return;
     }
