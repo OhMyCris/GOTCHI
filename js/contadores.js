@@ -135,10 +135,10 @@ function animation(stage, imgs){
     let targetPath = window.location.pathname;
 
     currentInterval = setInterval(() => {
-        if(targetPath === '/' || targetPath === '' || targetPath.includes('index.html')){
-            image.innerHTML = counter % 2 === 0  ? `<img src="${idleImgs[0]}" alt="">` : `<img src="${idleImgs[1]}" alt="">`;
-        } else {
+        if(targetPath.includes('jump-game.html')){
             image.innerHTML = counter % 2 === 0  ? `<img src="../${idleImgs[0]}" alt="">` : `<img src="../${idleImgs[1]}" alt="">`;
+        } else {
+            image.innerHTML = counter % 2 === 0  ? `<img src="${idleImgs[0]}" alt="">` : `<img src="${idleImgs[1]}" alt="">`;
         }
         
         counter++;
