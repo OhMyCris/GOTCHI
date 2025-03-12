@@ -79,41 +79,21 @@ if(diasTranscurridos >= 7){
     gotchi.age += incrementos;
 
     //Evolucion o muerte dependiendo de la edad, me ha sumado un año cuando deberia esperar una semana para ello
-    /*switch(gotchi.age){
+    switch(gotchi.age){
         case 1:
-            targetUrl = 'evolution-1.html';
-            window.location.href = targetUrl;
+            //evolveGotchi();
             break;
         case 3:
-            targetUrl = 'evolution-2.html';
-            window.location.href = targetUrl;
+            //evolveGotchi();
             break;
         case 5:
             targetUrl = 'dead.html';
             window.location.href = targetUrl;
             break;
-    }*/
+    }
 }
 
 console.log(gotchi.age);
-
-function evolution(img1, img2){
-    //TODO te lleva a la pagina principal, hace una pequeña animacion de cambio de apariencia y se queda con la nueva apariencia dependiendo de su disciplina
-    //Tener cuidado con que haga esto cuando estas en medio de otra cosa (p.ej jugando o dandole de comer)
-    //Hacer un array de imagenes dentro del objeto para que saque la apariencia del gotchi de ahi
-    gotchi.looks.push(img1, img2);
-    let image = document.getElementById('health-icon');
-    let counter = 0;
-    let animationInterval = setInterval(() => {
-        image.innerHTML = counter % 2 === 0  ? `<img src="${gotchi.looks[1]}" alt="">` : `<img src="${gotchi.looks[0]}" alt="">`;
-        counter++;
-    }, 2000);
-
-    if(counter == 4){
-        clearInterval(animationInterval);
-    }
-
-}
 
 //Para que el gotchi se mueva
 //El stage sirve para buscar el objeto de las imagenes (baby, stage1-1, etc...), y el imgs para ponerle
@@ -135,7 +115,7 @@ function animation(stage, imgs){
     let targetPath = window.location.pathname;
 
     currentInterval = setInterval(() => {
-        if(targetPath.includes('jump-game.html')){
+        if(targetPath.includes('jump-game.html') || targetPath.includes('evolution')){
             image.innerHTML = counter % 2 === 0  ? `<img src="../${idleImgs[0]}" alt="">` : `<img src="../${idleImgs[1]}" alt="">`;
         } else {
             image.innerHTML = counter % 2 === 0  ? `<img src="${idleImgs[0]}" alt="">` : `<img src="${idleImgs[1]}" alt="">`;
@@ -144,6 +124,13 @@ function animation(stage, imgs){
         counter++;
     }, 500);
 
+}
+
+function getCurrentStage() {
+    // Obtener el nombre del stage actual
+    let gotchi = window.gotchi;
+    let currentStage = gotchi.looks.find(look => look.name === 'baby'); // Aquí puedes usar cualquier lógica para determinar el estado actual
+    return currentStage ? currentStage.name : null;
 }
 
 //Cambia automaticamente el nombre de su fase evolutiva segun la edad que tenga

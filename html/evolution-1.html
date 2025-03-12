@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evolution</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">  
+    <link rel="stylesheet" href="../css/dead.css" id="dynamic-styles">
+</head>
+<body>
+    <main>
+        <div id="icon-container">
+            <div class="buttons">
+                <span class="icon" id="icon1"><i class="fa-solid fa-house"></i></span>
+                <span class="icon" id="icon2"><i class="fa-solid fa-utensils"></i></span>
+                <span class="icon" id="icon3"><i class="fa-solid fa-toilet"></i></span>
+                <span class="icon" id="icon4"><i class="fa-solid fa-baseball"></i></span>
+            </div>
+            <div class="mascot">
+                <span id="health-icon"></span>
+                <div class="poop" id="poop-container"></div>
+            </div>
+            <div class="buttons"> 
+                <span class="icon" id="icon5"><i class="fa-solid fa-face-angry"></i></span>
+                <span class="icon" id="icon6"><i class="fa-solid fa-kit-medical"></i></span>
+                <span class="icon" id="icon7"><i class="fa-solid fa-lightbulb"></i></span>
+                <span class="icon" id="icon8"><i class="fa-solid fa-comments"></i></span>
+            </div>
+            
+        </div>
+        <div>
+            <button id="prev-button">Previous</button>
+            <button id="next-button">Next</button>
+            <button id="cancel-button">Cancel</button>
+        </div>
+        <span id="current-index">currentIndex = 0</span>
+        <span id="current-icon-index">iconIndex = 0</span>
+        <div id="output"> Health: 100 hunger: 100 Happiness:100</div>
+    </main>
+
+    <script src="../js/contadores.js"></script>
+    <script>
+        const icons = document.querySelectorAll('.icon');
+        let currentIndex = -1;
+
+     
+    function evolveGotchi() {
+        let image = document.getElementById('health-icon');
+        let counter = 0;
+        let currentStageIndex = window.gotchi.looks.findIndex(look => look.name === getCurrentStage());
+        
+        if (currentStageIndex === -1) {
+            console.error("Current stage not found");
+            return;
+        }
+
+        let gotchiStages = window.gotchi.looks;
+        let currentStage = gotchiStages[currentStageIndex];
+        let nextStage = gotchiStages[currentStageIndex + 1];
+
+        if (!nextStage) {
+            console.error("Next stage not found");
+            return;
+        }
+
+        let currentStageIdle = currentStage.idle;
+        let nextStageIdle = nextStage.idle;
+
+        // Alternar entre la imagen idle de la etapa actual y la siguiente
+        currentInterval = setInterval(() => {
+            image.innerHTML = counter % 2 === 0 ? `<img src="../${currentStageIdle[0]}" alt="">` : `<img src="../${nextStageIdle[0]}" alt="">`;
+            counter++;
+
+            // Después de un tiempo, detener el ciclo y mostrar la imagen final de la siguiente fase
+            if (counter >= 6) { // Mostrar imágenes durante 3 ciclos (3 * 2 = 6 cambios)
+                clearInterval(currentInterval);
+                image.innerHTML = `<img src="../${nextStageIdle[0]}" alt="">`;
+
+                // Esperar 2 segundos y luego alternar entre las imágenes "happy"
+                setTimeout(() => {
+                    let happyImages = nextStage.happy || nextStage.idle; // Asumir que "happy" es un nuevo campo en la fase
+                    let happyCounter = 0;
+
+                    currentInterval = setInterval(() => {
+                        image.innerHTML = `<img src="../${happyImages[happyCounter % 2]}" alt="">`;
+                        happyCounter++;
+                    }, 1000);
+
+                    // Detener la animación después de 4 ciclos (4 * 1 segundo)
+                    setTimeout(() => {
+                        clearInterval(currentInterval);
+                    }, 4000);
+
+                }, 2000); // Esperar 2 segundos antes de comenzar la animación de "happy"
+
+            }
+        }, 500); // Alternar cada 500 ms entre las imágenes idle actuales y de la siguiente fase
+    }
+
+    evolveGotchi();
+
+function getCurrentStage() {
+    // Obtener el nombre del stage actual
+    let gotchi = window.gotchi;
+    let currentStage = gotchi.looks.find(look => look.name === 'baby'); // Aquí puedes usar cualquier lógica para determinar el estado actual
+    return currentStage ? currentStage.name : null;
+}
+
+        function updateSelection() {
+            icons.forEach((icon, index) => {
+                if (index === currentIndex) {
+                icon.classList.add('selected');
+                icon.classList.remove('icon');
+            } else {
+                icon.classList.remove('selected');
+                icon.classList.add('icon');
+            }
+                document.getElementById('current-icon-index').textContent = `iconIndex = ${index}`;
+            });
+            document.getElementById('current-index').textContent = `currentIndex = ${currentIndex}`;
+        }
+
+        document.getElementById('prev-button').addEventListener('click', () => {
+            
+        });
+
+        document.getElementById('next-button').addEventListener('click', () => {
+            
+        });
+
+        document.getElementById('cancel-button').addEventListener('click', () => {
+            
+        });
+
+        updateSelection();
+
+        
+    </script>
+    
+</body>
+</html>
