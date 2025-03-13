@@ -81,13 +81,27 @@ if(diasTranscurridos >= 7){
     //Evolucion o muerte dependiendo de la edad, me ha sumado un año cuando deberia esperar una semana para ello
     switch(gotchi.age){
         case 1:
-            //evolveGotchi();
+            if (!window.location.pathname.includes('index.html')) {
+                targetUrl = '../index.html';
+                window.location.href= targetUrl;
+            }
+            targetUrl = 'html/evolution-1.html';
+            window.location.href = targetUrl;
             break;
         case 3:
-            //evolveGotchi();
+            if (!window.location.pathname.includes('index.html')) {
+                targetUrl = '../index.html';
+                window.location.href= targetUrl;
+            }
+            targetUrl = 'html/evolution-2.html';
+            window.location.href = targetUrl;
             break;
         case 5:
-            targetUrl = 'dead.html';
+            if (!window.location.pathname.includes('index.html')) {
+                targetUrl = '../index.html';
+                window.location.href= targetUrl;
+            }
+            targetUrl = 'html/dead.html';
             window.location.href = targetUrl;
             break;
     }

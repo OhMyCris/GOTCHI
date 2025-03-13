@@ -62,7 +62,10 @@ function saltar() {
             }
         }
 
-        salto = false;
+        gotchi.addEventListener('transitionend', () => {
+            console.log('La transición ha terminado');
+            salto = false;
+        });
         
     }, timeoutTime);
 }

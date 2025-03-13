@@ -102,7 +102,7 @@
     function getCurrentStage() {
     // Obtener el nombre del stage actual
         let gotchi = window.gotchi;
-        let currentStage = gotchi.looks.find(look => look.name === 'baby'); // Esto lo puedo cambiar para que me busque la fase evolutiva actual del gotchi
+        let currentStage = gotchi.looks.find(look => look.name === 'stage1-1'); // Esto lo puedo cambiar para que me busque la fase evolutiva actual del gotchi
         return currentStage ? currentStage.name : null;
     }
 
@@ -134,10 +134,9 @@
 
         updateSelection();
 
-        
         targetUrl = '../index.html';
         window.location.href= targetUrl;
-            
+        
     </script>
     
 </body>
