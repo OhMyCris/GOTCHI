@@ -38,8 +38,7 @@ function saltar() {
 
     setTimeout(() => {
         gotchi.style.top = '60px';  // El gotchi vuelve a su posición inicial (top: 60px)
-        if (!juegoTerminado) {
-            const barraRect = barra.getBoundingClientRect();
+        const barraRect = barra.getBoundingClientRect();
             const gotchiRect = gotchi.getBoundingClientRect();
 
             if (barraRect.left < gotchiRect.right && barraRect.left > gotchiRect.left) {
@@ -53,18 +52,16 @@ function saltar() {
                 if (timeoutTime < 600) timeoutTime = 600;
                 ms = velBarra + "ms";
 
-                barra.style.right = '0'; // Esto restablece la barra a la esquina derecha
                 barra.style.animation = 'none';
-                setTimeout(() => {
-                    barra.style.animation = `moverBarra ${ms} linear infinite`;  // Reiniciamos la animación con la nueva duración
-                }, 20);
+                barra.offsetHeight;  // Forzar un reflow
+                barra.style.animation = `moverBarra ${ms} linear infinite`;  // Reiniciar la animación
                 console.log("Puntaje:", score, "Velocidad de la barra:", velBarra, "Tiempo de espera:", timeoutTime);
             }
-        }
-
+       
+        salto = false;
         gotchi.addEventListener('transitionend', () => {
             console.log('La transición ha terminado');
-            salto = false;
+            
         });
         
     }, timeoutTime);

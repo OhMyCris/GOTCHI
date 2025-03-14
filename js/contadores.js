@@ -73,38 +73,48 @@ function calcularDiferenciaDias(fechaAlmacenada, fechaActual) {
 const diasTranscurridos = calcularDiferenciaDias(fechaAlmacenada, gotchi.date);
 console.log(diasTranscurridos);
 
+let edadAnterior = gotchi.age;
 //Se suma un año cada semana
 if(diasTranscurridos >= 7){
     const incrementos = Math.floor(diasTranscurridos / 7);
     gotchi.age += incrementos;
 
-    //Evolucion o muerte dependiendo de la edad, me ha sumado un año cuando deberia esperar una semana para ello
-    switch(gotchi.age){
-        case 1:
-            if (!window.location.pathname.includes('index.html')) {
-                targetUrl = '../index.html';
-                window.location.href= targetUrl;
-            }
-            targetUrl = 'html/evolution-1.html';
-            window.location.href = targetUrl;
-            break;
-        case 3:
-            if (!window.location.pathname.includes('index.html')) {
-                targetUrl = '../index.html';
-                window.location.href= targetUrl;
-            }
-            targetUrl = 'html/evolution-2.html';
-            window.location.href = targetUrl;
-            break;
-        case 5:
-            if (!window.location.pathname.includes('index.html')) {
-                targetUrl = '../index.html';
-                window.location.href= targetUrl;
-            }
-            targetUrl = 'html/dead.html';
-            window.location.href = targetUrl;
-            break;
+    if(gotchi.age !== edadAnterior){
+        //Evolucion o muerte dependiendo de la edad, me ha sumado un año cuando deberia esperar una semana para ello
+        /*switch(gotchi.age){
+            case 1:
+                if (!window.location.pathname.includes('index.html')) {
+                    targetUrl = '../index.html';
+                    window.location.href= targetUrl;
+                } else{
+                    targetUrl = 'html/evolution-1.html';
+                    window.location.href = targetUrl;
+                }
+                
+                break;
+            case 3:
+                if (!window.location.pathname.includes('index.html')) {
+                    targetUrl = '../index.html';
+                    window.location.href= targetUrl;
+                }else{
+                    targetUrl = 'html/evolution-2.html';
+                    window.location.href = targetUrl;
+                }
+                
+                break;
+            case 5:
+                if (!window.location.pathname.includes('index.html')) {
+                    targetUrl = '../index.html';
+                    window.location.href= targetUrl;
+                }else{
+                    targetUrl = 'html/dead.html';
+                    window.location.href = targetUrl;
+                }
+                
+                break;
+        }*/
     }
+    
 }
 
 console.log(gotchi.age);
