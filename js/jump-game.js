@@ -5,6 +5,8 @@ const gotchi = document.getElementById('health-icon');
 const barra = document.getElementById('barra');
 const game = document.querySelector('.mascot');
 
+
+
 let gotchiBottom = 0;  // Controlar la altura del gotchi
 let salto = false;
 let score = 0;
@@ -18,8 +20,12 @@ function moverBarra() {
     const gotchiRect = gotchi.getBoundingClientRect();
     const gameRect = game.getBoundingClientRect();
 
+    const colisionY = gotchiRect.bottom >= barraRect.top && gotchiRect.bottom <= barraRect.top + barraRect.height;
+    const colisionX1 = barraRect.left < gotchiRect.right && barraRect.left > gotchiRect.left;
+    const colisionX2 = barraRect.right > gotchiRect.left && barraRect.right < gotchiRect.right;
+
     // Verificar si la barra está cerca del monigote
-    if (barraRect.left < gotchiRect.right && barraRect.left > gotchiRect.left && !salto) {
+    if (colisionX1 || colisionX2 || colisionY && !salto) {
         detenerJuego(); 
     }
 
@@ -33,15 +39,18 @@ function saltar() {
     if (juegoTerminado || salto) return; //Para que si se para el juego no haga nada mas
     salto = true;
     gotchi.style.transition = "top 0.5s ease";
-    gotchi.style.top = '0px';  // El monigote salta hacia arriba
+    gotchi.style.top = '0px';  // El gotchi salta hacia arriba
     
 
     setTimeout(() => {
-        gotchi.style.top = '60px';  // El gotchi vuelve a su posición inicial (top: 60px)
+        gotchi.style.top = '60px';  // El gotchi vuelve a su posición inicial
         const barraRect = barra.getBoundingClientRect();
-            const gotchiRect = gotchi.getBoundingClientRect();
+        const gotchiRect = gotchi.getBoundingClientRect();
+        const colisionY = gotchiRect.bottom >= barraRect.top && gotchiRect.bottom <= barraRect.top + barraRect.height;
+        const colisionX1 = barraRect.left < gotchiRect.right && barraRect.left > gotchiRect.left;
+        const colisionX2 = barraRect.right > gotchiRect.left && barraRect.right < gotchiRect.right;
 
-            if (barraRect.left < gotchiRect.right && barraRect.left > gotchiRect.left) {
+            if (colisionX1 || colisionX2 || colisionY) {
                 console.log("Colisión detectada, el puntaje no se incrementa.");
             } else {
                 // Si no hay colisión, sumamos al puntaje
@@ -58,10 +67,10 @@ function saltar() {
                 console.log("Puntaje:", score, "Velocidad de la barra:", velBarra, "Tiempo de espera:", timeoutTime);
             }
        
-        salto = false;
+            
         gotchi.addEventListener('transitionend', () => {
             console.log('La transición ha terminado');
-            
+            salto = false;
         });
         
     }, timeoutTime);
@@ -71,6 +80,7 @@ function saltar() {
 setInterval(() => {
     moverBarra();
     document.getElementById('score').textContent = `score = ${score}`;
+
 }, 100);
 
 function detenerJuego() {
