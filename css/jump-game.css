@@ -38,6 +38,7 @@ main{
     height: 70px;
     width: 100%;
     opacity: 75%;
+    overflow: hidden;
 }
 
 .mascot #health-icon{
@@ -45,33 +46,19 @@ main{
     top: 60px;
     left: 15px;
     width: 25%;
-    height: 100%;
+    height: 35%;
+    background-color: rgb(221, 255, 71);
+}
+
+.mascot #health-icon img{
+    background-color: tomato;
 }
 
 .mascot #barra {
     position: absolute;
     bottom: 0;
-    right: 0;
+    right: -10%;
     width: 15px;
     height: 30px;
     background-color: blue;
-    animation: moverBarra 3000ms linear infinite;
-    animation-play-state: running;
-}
-
-@keyframes moverBarra {
-    0% {
-        right: 0;
-        opacity: 100;
-    }
-    74% {
-        opacity: 100;
-    }
-    75% {
-        opacity: 0;
-    }
-    100% {
-        right: 120%;
-        opacity: 0;
-    }
 }
