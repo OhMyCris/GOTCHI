@@ -4,7 +4,7 @@ let redFlag = document.getElementById("flag1");
 let whiteFlag = document.getElementById("flag2");
 let isRed;
 let isWhite;
-let intervalTime = 4000; // Tiempo inicial del intervalo en milisegundos
+let intervalTime = 2000; // Tiempo inicial del intervalo en milisegundos
 let intervalId;
 let scoreUpdated = false;
 
@@ -39,7 +39,7 @@ function danceGame(){
     console.log("Miss: ", miss);
 
     if(miss == 3){
-        window.gotchi.happiness -= 5;
+        decreaseParams(5, "happiness");
         score = 0;
         miss = 0;
         targetUrl = '../index.html';
@@ -61,7 +61,7 @@ function danceGame(){
                 increaseParams(1, "discipline");
                 score = 0;
                 miss = 0;
-                intervalTime = 4000;
+                intervalTime = 2000;
                 updateInterval();
                 scoreUpdated = true;
                 targetUrl = '../index.html';

@@ -38,9 +38,15 @@ function newBarra(){
 
             requestAnimationFrame(moveBarra); // Llama a la función para continuar el movimiento
 
-            if (score >= 50) {
+            if (score >= 30) {
                 moving = false; // Detener la barra
                 console.log("La barra se ha detenido. Score alcanzado: " + score);
+            } 
+
+            switch(score){
+                case 5: case 10:
+                    increaseParams(5, "happiness");
+                    break;
             }
     }
     
@@ -50,9 +56,9 @@ function newBarra(){
 }
 newBarra();
 
-const gotchi = document.getElementById('health-icon');
+const gotchiJump = document.getElementById('health-icon');
 const barra = document.getElementById('barra');
-
+//detector de colisiones
 function isColliding(gotchi, barra){
     const gotchiRect = gotchi.getBoundingClientRect();
     const barraRect = barra.getBoundingClientRect();
@@ -64,14 +70,14 @@ function isColliding(gotchi, barra){
         gotchiRect.top > barraRect.bottom
     );
 }
-
+//si detecta colisiones se para el juego, el intervalo calcula la posicion del gotchi y la barra constantemente
 let colisionTracker = setInterval(() => {
     document.getElementById('score').textContent = `score = ${score}`;
-    if(isColliding(gotchi, barra)){
+    if(isColliding(gotchiJump, barra)){
         console.log('Colision detectada');
         detenerJuego();
         clearInterval(colisionTracker);
-        gotchi.style.transform = 'rotate(-90deg)';
+        gotchiJump.style.transform = 'rotate(-90deg)';
     }
 }, )
 
@@ -79,22 +85,22 @@ let colisionTracker = setInterval(() => {
 function saltar() {
     if (juegoTerminado || salto) return; //Para que si se para el juego no haga nada mas
     salto = true;
-    gotchi.style.transition = "top 0.5s ease";
-    gotchi.style.top = '0px';  // El gotchi salta hacia arriba
+    gotchiJump.style.transition = "top 0.5s ease";
+    gotchiJump.style.top = '0px';  // El gotchi salta hacia arriba
     console.log('gotchi salta');
     
 
     setTimeout(() => {
-        gotchi.style.top = '60px';  // El gotchi vuelve a su posición inicial
+        gotchiJump.style.top = '60px';  // El gotchi vuelve a su posición inicial
         console.log('gotchi baja');
        
             
-        gotchi.addEventListener('transitionend', function gestor() {
+        gotchiJump.addEventListener('transitionend', function gestor() {
             console.log('La transición ha terminado');
             salto = false;
 
             console.log("Puntaje:", score, "Tiempo de espera:", timeoutTime);
-            gotchi.removeEventListener('transitionend', gestor);
+            gotchiJump.removeEventListener('transitionend', gestor);
         });
         
     }, timeoutTime);
@@ -104,6 +110,13 @@ function detenerJuego() {
     juegoTerminado = true;
     //El clear interval esta haciendo que cuando salta y la barra vuelva le pase por encima al gotchi
     moving = false;
+
+    if(score >= 20){
+        increaseParams(10, "happiness");
+        increaseParams(1, "discipline");
+        targetUrl = '../index.html';
+        window.location.href = targetUrl;
+    }
 }
 
 document.getElementById('next-button').addEventListener('click', () => {

@@ -36,10 +36,19 @@ let targetUrl = '';
 
 //Para que se incremente cualquier valor sin pasar de 100
 function increaseParams(amount, param){
+    console.log(`Aumentando ${param} en ${amount}`);
     gotchi[param] += amount;
     if(gotchi[param] >= 100) {
         gotchi[param] = 100;
         alert('Your pet refuses');
+    }
+}
+
+function decreaseParams(amount, param){
+    console.log(`Reduciendo ${param} en ${amount}`);
+    gotchi[param] -= amount;
+    if(gotchi[param] <= 0) {
+        gotchi[param] = 0;
     }
 }
 
