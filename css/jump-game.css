@@ -45,9 +45,9 @@ main{
     position: absolute;
     top: 60px;
     left: 15px;
-    width: 25%;
     height: 35%;
     background-color: rgb(221, 255, 71);
+    transition: transform 0.3s ease;
 }
 
 .mascot #health-icon img{
