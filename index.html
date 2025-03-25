@@ -64,9 +64,13 @@
             document.getElementById('current-index').textContent = `currentIndex = ${currentIndex}`;
         }
 
-        document.getElementById('prev-button').addEventListener('click', () => {
+        const handlePrevButton = document.getElementById('prev-button').addEventListener('click', () => {
             currentIndex = (currentIndex + 1 + icons.length) % icons.length;
             updateSelection();
+
+            if(document.body.style.backgroundColor === 'black'){
+                document.getElementById('prev-button').removeEventListener('click', handlePrevButton);
+            }
         });
 
         document.getElementById('next-button').addEventListener('click', () => {
@@ -114,9 +118,13 @@
             
         });
 
-        document.getElementById('cancel-button').addEventListener('click', () => {
+        const handleCancelButton = document.getElementById('cancel-button').addEventListener('click', () => {
             currentIndex = -1;
             updateSelection();
+
+            if(document.body.style.backgroundColor === 'black'){
+                document.getElementById('prev-button').removeEventListener('click', handlePrevButton);
+            }
         });
 
         updateSelection();

@@ -108,7 +108,6 @@ function saltar() {
 
 function detenerJuego() {
     juegoTerminado = true;
-    //El clear interval esta haciendo que cuando salta y la barra vuelva le pase por encima al gotchi
     moving = false;
 
     if(score >= 20){

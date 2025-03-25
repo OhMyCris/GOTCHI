@@ -194,8 +194,10 @@ function updateHealth(newHealth) {
     document.dispatchEvent(healthChangeEvent);
 }
 
+let intervalId;
+
 function updateValues(obj, interval){
-   const intervalId = setInterval(() => {
+   intervalId = setInterval(() => {
     console.log(obj); //Ver los valores en consola
     //Bucle for para separar los intervalos
     const properties = ['health', 'hunger', 'happiness'];
