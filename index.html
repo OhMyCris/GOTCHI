@@ -45,6 +45,7 @@
     <script src="js/health.js"></script>
     <script src="js/daynight.js"></script>
     <script src="js/cuenta-atras.js"></script>
+    <script src="js/gotchi-moving-index.js"></script>
 
     <script>
         const icons = document.querySelectorAll('.icon');
@@ -64,14 +65,18 @@
             document.getElementById('current-index').textContent = `currentIndex = ${currentIndex}`;
         }
 
-        const handlePrevButton = document.getElementById('prev-button').addEventListener('click', () => {
+        const handlePrevButtonClick = () => {
+            if (document.body.style.backgroundColor === 'black') {
+                document.getElementById('prev-button').removeEventListener('click', handlePrevButtonClick);
+                return;
+            }
+
             currentIndex = (currentIndex + 1 + icons.length) % icons.length;
             updateSelection();
+        };
 
-            if(document.body.style.backgroundColor === 'black'){
-                document.getElementById('prev-button').removeEventListener('click', handlePrevButton);
-            }
-        });
+        // Añadir el event listener
+        document.getElementById('prev-button').addEventListener('click', handlePrevButtonClick);
 
         document.getElementById('next-button').addEventListener('click', () => {
             const selectedIcon = icons[currentIndex].id;
@@ -118,14 +123,18 @@
             
         });
 
-        const handleCancelButton = document.getElementById('cancel-button').addEventListener('click', () => {
+        const handleCancelButtonClick = () => {
+            if (document.body.style.backgroundColor === 'black') {
+                document.getElementById('prev-button').removeEventListener('click', handleCancelButtonClick);
+                return;
+            }
+
             currentIndex = -1;
             updateSelection();
+        };
 
-            if(document.body.style.backgroundColor === 'black'){
-                document.getElementById('prev-button').removeEventListener('click', handlePrevButton);
-            }
-        });
+        // Añadir el event listener
+        document.getElementById('cancel-button').addEventListener('click', handleCancelButtonClick);
 
         updateSelection();
 

@@ -38,39 +38,19 @@ main{
     height: 70px;
     width: 100%;
     opacity: 75%;
+    overflow: hidden;
     
 
     & #health-icon{
         position: absolute;
         z-index: 1;
-        top: 0;
+        top: 65%;
         left: 0;
-        width: 100%;
-        height: 100%;
-        animation: spritesMoviendose 1s infinite;
+        width: 50px; /* Ajusta el tamaño del icono */
+        height: 50px; /* Ajusta el tamaño del icono */
+        transition: transform 0.2s ease-in-out;
     }
 }
-
-/*@keyframes spritesMoviendose {
-    0% {
-        transform: translate(0, 0);
-    }
-    39% {
-        transform: translate(0, 0);
-    }
-    40% {
-        transform: translate(0, 20px);
-    }
-    80% {
-        transform: translate(0, 20px);
-    }
-    81% {
-        transform: translate(0, 0);
-    }
-    100% {
-        transform: translate(0, 0);
-    }
-}*/
 
 .poop {
     position: absolute;
