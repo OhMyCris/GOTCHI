@@ -27,7 +27,8 @@ window.gotchi = /*savedState ? JSON.parse(savedState) : */{
             idle: ['img/Rose1-idle.png', 'img/Rose2-idle.png'],
             sick: ['img/Rose1-sick.png', 'img/Rose2-sick.png'],
             refuse: ['../img/Rose1-left.png', '../img/Rose2-right.png'],
-            dead: ['../img/Rose1-dead.png', '../img/Rose2-dead.png']
+            dead: ['../img/Rose1-dead.png', '../img/Rose2-dead.png'],
+            sleep: ['../img/Rose1-sleep.png', '../img/Rose2-sleep.png']
         }
     ]  
 }

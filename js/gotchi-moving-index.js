@@ -4,7 +4,9 @@ const mascot = document.querySelector('.mascot');
 const iconSize = mascot.clientWidth / 10;
 
 // Obtener las dimensiones del contenedor .mascot
-const mascotWidth = mascot.clientWidth;
+const mascotWidth = mascot.clientWidth - 30;
+
+console.log(mascotWidth);
 
 // Inicializamos la posición actual del icono
 let currentX = 0;
@@ -26,4 +28,4 @@ function moveHealthIcon() {
 }
 
 // Llamar a la función para mover el icono cada cierto tiempo aleatorio
-setInterval(moveHealthIcon, 2000); // Cada 1 segundo, mueve el icono
+let movingGotchi = setInterval(moveHealthIcon, 2000); // Cada 1 segundo, mueve el icono

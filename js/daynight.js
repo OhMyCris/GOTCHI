@@ -2,12 +2,11 @@ function dayNight() {
 
     //Si son entre las 10pm y las 8am se puede apagar y encender la luz, sino no
     if(window.gotchi.date.getHours() >= 22 && window.gotchi.date.getHours() <= 8){ 
-        const styleSheet = document.getElementById('dynamic-styles').sheet;
-        // Inserta la regla para el pseudo-elemento ::before
-        styleSheet.insertRule("#health-icon::before { content: 'zzz'; display: block; }", styleSheet.cssRules.length);
+        animation(edadGotchi(), 'sleep');
 
         const isLightOff = document.body.style.backgroundColor === 'black';
         const firstTimeLightOff = sessionStorage.getItem('firstTimeLightOff') === 'true';
+        clearInterval(movingGotchi);
 
         if(isLightOff){
             document.body.style.backgroundColor = 'white';
@@ -17,6 +16,7 @@ function dayNight() {
                 clearInterval(intervalId);  // Detenemos el intervalo
             }
             updateValues(gotchi, 3000);
+            startSpawningIcons();
         } else {
             document.body.style.backgroundColor = 'black';
             document.body.style.color = 'white';
@@ -24,6 +24,7 @@ function dayNight() {
             if (intervalId) {
                 clearInterval(intervalId);  // Detenemos el intervalo
             }
+            stopSpawningIcons();
             if(window.gotchi.date.getHours() >= 1 && window.gotchi.date.getHours() <= 6){
                 window.gotchi.discipline -= 1;
             } else if(window.gotchi.date.getHours() == 22 && !firstTimeLightOff){
